@@ -2,6 +2,12 @@
 node_modules/
 */node_modules/
 **/node_modules/
+dist/
+*/dist/
+**/dist/
+spotify-backend/
+spotify-frontend/
+spotify-admin/
 
 # npm debug logs
 npm-debug.log*

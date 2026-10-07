@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        project: [spotify-backend, spotify-admin, spotify-frontend]
+        project: [backend, admin, frontend]
 
     steps:
       - name: Checkout repository
