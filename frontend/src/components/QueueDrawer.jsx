@@ -73,7 +73,7 @@ const QueueDrawer = () => {
                                     <p className={`text-sm font-medium truncate ${isCurrent ? 'text-purple-300' : ''}`}>
                                         {item.name}
                                     </p>
-                                    <p className="text-xs text-slate-500 truncate">{item.desc || "Aura Original"}</p>
+                                    <p className="text-xs text-slate-500 truncate">{item.desc || "NXT-Music Original"}</p>
                                 </div>
                             </div>
                             <span className="text-xs text-slate-400 ml-2 font-mono">{item.duration || "2:45"}</span>

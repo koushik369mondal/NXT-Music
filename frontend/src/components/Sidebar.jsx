@@ -23,7 +23,7 @@ const Sidebar = () => {
                     </div>
                     <div>
                         <div className='flex items-center gap-1.5'>
-                            <span className='font-extrabold text-xl tracking-tight text-white'>AURA</span>
+                            <span className='font-extrabold text-xl tracking-tight text-white'>NXT-Music</span>
                             <span className='text-[10px] uppercase font-bold tracking-widest px-1.5 py-0.5 rounded-full bg-purple-500/20 text-purple-300 border border-purple-500/30'>Hi-Fi</span>
                         </div>
                         <p className='text-[11px] text-slate-400 font-medium'>Spatial Audio Platform</p>
@@ -139,7 +139,7 @@ const Sidebar = () => {
                     </div>
                     <span className='text-[10px] font-mono px-1.5 py-0.5 rounded bg-white/10 text-slate-300'>FLAC 24/96</span>
                 </div>
-                <p className='text-xs text-slate-300 font-medium'>Aura Dynamic Acoustic Engine</p>
+                <p className='text-xs text-slate-300 font-medium'>NXT Dynamic Acoustic Engine</p>
                 <div className='flex items-center justify-between mt-2 pt-2 border-t border-white/5 text-[11px] text-slate-400'>
                     <span>Spatial Rendering</span>
                     <span className='text-purple-400 font-semibold'>Ultra HD</span>

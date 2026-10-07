@@ -71,7 +71,7 @@ const DisplayHome = () => {
                     <div className='relative z-10 max-w-xl flex flex-col gap-4'>
                         <div className='flex items-center gap-2'>
                             <span className='px-2.5 py-1 rounded-full text-[11px] font-bold font-mono tracking-wider bg-purple-500/20 text-purple-300 border border-purple-500/30'>
-                                ✦ AURA PREMIERE
+                                ✦ NXT-MUSIC PREMIERE
                             </span>
                             <span className='px-2 py-0.5 rounded-full text-[10px] font-mono tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'>
                                 FLAC 24-BIT / 96KHZ

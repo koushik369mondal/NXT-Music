@@ -89,7 +89,7 @@ const DisplayAlbum = ({ album }) => {
                         </p>
 
                         <div className='flex flex-wrap items-center justify-center md:justify-start gap-3 text-xs text-slate-400 pt-1'>
-                            <span className='font-bold text-white'>Aura Studio Records</span>
+                            <span className='font-bold text-white'>NXT-Music Records</span>
                             <span>•</span>
                             <span>{albumSongs.length} Tracks</span>
                             <span>•</span>
@@ -194,7 +194,7 @@ const DisplayAlbum = ({ album }) => {
 
                                 {/* Desc / Artist */}
                                 <div className='col-span-3 hidden sm:block text-xs text-slate-400 truncate pr-2'>
-                                    {item.desc || 'Aura Spatial Master'}
+                                    {item.desc || 'NXT-Music Spatial Master'}
                                 </div>
 
                                 {/* Quality Badge */}

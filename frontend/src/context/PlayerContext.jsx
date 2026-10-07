@@ -27,7 +27,7 @@ const PlayerContextProvider = (props) => {
     // Persisted favorites
     const [favorites, setFavorites] = useState(() => {
         try {
-            const saved = localStorage.getItem("aura_favorites");
+            const saved = localStorage.getItem("nxt_favorites") || localStorage.getItem("aura_favorites");
             return saved ? JSON.parse(saved) : [localSongsData[0]?.id ?? 0, localSongsData[2]?.id ?? 2];
         } catch {
             return [0, 2];
@@ -39,7 +39,7 @@ const PlayerContextProvider = (props) => {
             const exists = prev.includes(id);
             const nextFavs = exists ? prev.filter((item) => item !== id) : [...prev, id];
             try {
-                localStorage.setItem("aura_favorites", JSON.stringify(nextFavs));
+                localStorage.setItem("nxt_favorites", JSON.stringify(nextFavs));
             } catch (e) {
                 console.error(e);
             }

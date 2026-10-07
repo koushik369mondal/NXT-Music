@@ -1,5 +1,5 @@
 {
-  "name": "spotify-backend",
+  "name": "nxt-music-backend",
   "version": "1.0.0",
   "main": "server.js",
   "type": "module",
@@ -11,7 +11,7 @@
   },
   "author": "Kaushik Mandal",
   "license": "ISC",
-  "description": "A Spotify clone backend built with Node.js, Express, and MongoDB.",
+  "description": "A NXT-Music backend built with Node.js, Express, and MongoDB.",
   "dependencies": {
     "cloudinary": "^2.7.0",
     "cors": "^2.8.5",
