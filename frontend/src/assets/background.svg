@@ -1,0 +1,36 @@
+<svg width="2842" height="1132" viewBox="0 0 2842 1132" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Warm Hexagon and Ambient Radial Glow -->
+    <radialGradient id="chaiGlow" cx="50%" cy="0%" r="55%" fx="50%" fy="0%">
+      <stop offset="0%" stop-color="#ff7d0c" stop-opacity="0.14" />
+      <stop offset="35%" stop-color="#d97706" stop-opacity="0.06" />
+      <stop offset="70%" stop-color="#78350f" stop-opacity="0.02" />
+      <stop offset="100%" stop-color="#0a0a0a" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="topSpot" cx="50%" cy="0%" r="35%">
+      <stop offset="0%" stop-color="#fed7aa" stop-opacity="0.10" />
+      <stop offset="60%" stop-color="#ea580c" stop-opacity="0.03" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+    <!-- Hexagon Grid Pattern -->
+    <pattern id="hexGrid" width="48" height="83.138" patternUnits="userSpaceOnUse" patternTransform="scale(1)">
+      <path d="M48 27.713L24 13.856L0 27.713V55.426L24 69.282L48 55.426V27.713Z M24 0L0 13.856V41.569L24 55.426L48 41.569V13.856L24 0Z M24 83.138L0 69.282V41.569L24 55.426L48 41.569V69.282L24 83.138Z" stroke="rgba(255, 247, 237, 0.025)" stroke-width="0.8" fill="none" />
+    </pattern>
+    <linearGradient id="fadeMask" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9" />
+      <stop offset="45%" stop-color="#ffffff" stop-opacity="0.6" />
+      <stop offset="85%" stop-color="#ffffff" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </linearGradient>
+    <mask id="fade">
+      <rect width="2842" height="1132" fill="url(#fadeMask)" />
+    </mask>
+  </defs>
+
+  <!-- Ambient Glow Layers -->
+  <rect width="2842" height="1132" fill="url(#chaiGlow)" mask="url(#fade)" />
+  <rect width="2842" height="600" fill="url(#topSpot)" mask="url(#fade)" />
+
+  <!-- Hexagon Grid -->
+  <rect width="2842" height="1132" fill="url(#hexGrid)" mask="url(#fade)" opacity="0.85" />
+</svg>

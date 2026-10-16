@@ -19,15 +19,15 @@ const Display = () => {
         : null;
 
     return (
-        <div
+        <main
             ref={displayRef}
-            className='flex-1 h-full aura-glass rounded-2xl overflow-y-auto px-4 sm:px-8 pt-4 pb-20 relative'
+            className='flex-1 h-full card-chai rounded-xl overflow-y-auto px-4 sm:px-8 pt-4 pb-16 relative'
         >
             <Routes>
                 <Route path='/' element={<DisplayHome />} />
                 <Route path='/album/:id' element={<DisplayAlbum album={currentAlbum} />} />
             </Routes>
-        </div>
+        </main>
     );
 };
 

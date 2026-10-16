@@ -2,7 +2,9 @@ import React, { useContext, useMemo } from 'react';
 import Navbar from './Navbar';
 import AlbumItem from './AlbumItem';
 import SongItem from './SongItem';
+import { AnimatedBadge } from './ChaiPrimitives';
 import { PlayerContext } from '../context/PlayerContext';
+import { ArrowUpRight, Play, Sparkles, Disc } from 'lucide-react';
 
 const DisplayHome = () => {
     const { songsData, albumsData, searchTerm, activeCategory, playWithId, getTrackId, favorites } = useContext(PlayerContext);
@@ -54,101 +56,111 @@ const DisplayHome = () => {
     const heroTrack = songsData && songsData.length > 0 ? songsData[0] : null;
 
     return (
-        <div className='flex flex-col gap-6 pb-20'>
+        <div className='flex flex-col gap-8 pb-20'>
             <Navbar />
 
-            {/* If not searching and on 'all' or 'trending', show Cinematic Hero Banner */}
+            {/* ChaiUI Hero: One Central Element */}
             {!searchTerm && (activeCategory === 'all' || activeCategory === 'trending') && heroTrack && (
-                <div className='relative rounded-3xl overflow-hidden p-6 sm:p-10 aura-glass border border-white/10 shadow-2xl'>
-                    {/* Background glow and subtle artwork backdrop */}
-                    <div
-                        className='absolute inset-0 bg-cover bg-center opacity-25 filter blur-2xl scale-125 pointer-events-none'
-                        style={{ backgroundImage: `url(${heroTrack.image})` }}
-                    />
-                    <div className='absolute inset-0 bg-gradient-to-r from-[#06080e] via-[#06080e]/80 to-transparent pointer-events-none' />
+                <section className='card-chai p-6 sm:p-10 flex flex-col md:flex-row items-center gap-8 justify-between relative overflow-hidden'>
+                    <div className='flex flex-col gap-4 max-w-xl'>
+                        <AnimatedBadge>Studio master audio engine</AnimatedBadge>
 
-                    {/* Banner Content */}
-                    <div className='relative z-10 max-w-xl flex flex-col gap-4'>
-                        <div className='flex items-center gap-2'>
-                            <span className='px-2.5 py-1 rounded-full text-[11px] font-bold font-mono tracking-wider bg-purple-500/20 text-purple-300 border border-purple-500/30'>
-                                ✦ NXT-MUSIC PREMIERE
-                            </span>
-                            <span className='px-2 py-0.5 rounded-full text-[10px] font-mono tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'>
-                                FLAC 24-BIT / 96KHZ
-                            </span>
-                        </div>
+                        <h1 className='text-[34px] sm:text-5xl lg:text-6xl font-semibold tracking-tight leading-tight text-white'>
+                            Precision sound in every frequency
+                        </h1>
 
-                        <h2 className='text-3xl sm:text-5xl font-black tracking-tight text-white leading-tight'>
-                            Immerse in Pure <span className='aura-gradient-text'>Spatial Sound</span>
-                        </h2>
-
-                        <p className='text-sm sm:text-base text-slate-300 leading-relaxed max-w-lg'>
-                            Stream studio master quality without compression. Featuring exclusive high-definition tracks and spatial acoustics.
+                        <p className='text-base text-neutral-400 sm:text-lg leading-relaxed'>
+                            Stream studio recordings without compression, engineered for <span className='highlight'>pure acoustic clarity</span>.
                         </p>
 
                         <div className='flex items-center gap-3 pt-2'>
+                            {/* Solid asymmetric button: the single main action on this screen */}
                             <button
                                 onClick={() => playWithId(getTrackId(heroTrack))}
-                                className='aura-glow-btn px-6 py-3 rounded-xl font-bold text-sm text-white flex items-center gap-2.5 cursor-pointer'
+                                className='btn-asym inline-flex h-10 items-center gap-2 bg-white px-5 text-sm font-medium text-black transition-colors duration-200 hover:bg-neutral-200 cursor-pointer'
                             >
-                                <svg className='w-5 h-5 fill-current' viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                                <span>Play Spotlight: {heroTrack.name}</span>
+                                Play spotlight
+                                <ArrowUpRight className='-ml-1 size-4' aria-hidden />
                             </button>
 
-                            <div className='hidden sm:flex items-center gap-1.5 px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300'>
-                                <span className='w-2 h-2 rounded-full bg-cyan-400 animate-ping' />
-                                <span>Lossless Audio Active</span>
+                            {/* Outline beside it */}
+                            <div className='hidden sm:flex items-center gap-2 px-3.5 py-2 text-xs font-mono text-neutral-400 border border-card-edge rounded-lg bg-neutral-900/40'>
+                                <span className='w-2 h-2 rounded-full bg-emerald-400' />
+                                <span>FLAC 24-bit / 96kHz</span>
                             </div>
                         </div>
                     </div>
-                </div>
-            )}
 
-            {/* Search or Category Header if active */}
-            {searchTerm && (
-                <div className='flex items-center justify-between pb-2 border-b border-white/10'>
-                    <div>
-                        <h2 className='text-lg font-bold text-white'>
-                            Search results for <span className='text-purple-400'>"{searchTerm}"</span>
-                        </h2>
-                        <p className='text-xs text-slate-400'>
-                            Found {filteredSongs.length} tracks and {filteredAlbums.length} collections
-                        </p>
-                    </div>
-                </div>
-            )}
-
-            {activeCategory === 'favorites' && !searchTerm && (
-                <div className='flex items-center justify-between pb-2 border-b border-white/10'>
-                    <div>
-                        <h2 className='text-2xl font-bold text-white flex items-center gap-2'>
-                            <span className='text-rose-500'>♥</span> Your Favorite Vault
-                        </h2>
-                        <p className='text-xs text-slate-400'>
-                            {filteredSongs.length} loved tracks ready to stream
-                        </p>
-                    </div>
-                </div>
-            )}
-
-            {/* Featured Albums Section */}
-            {activeCategory !== 'favorites' && filteredAlbums.length > 0 && (
-                <div>
-                    <div className='flex items-center justify-between mb-4'>
-                        <div>
-                            <h3 className='text-xl sm:text-2xl font-extrabold text-white tracking-tight'>
-                                Curated Collections
-                            </h3>
-                            <p className='text-xs text-slate-400 mt-0.5'>Studio master albums and global charts</p>
+                    {/* Single Central Artwork Element */}
+                    <div className='relative w-48 h-48 sm:w-60 sm:h-60 rounded-xl overflow-hidden border border-card-edge bg-neutral-950 flex-shrink-0'>
+                        <img
+                            src={heroTrack.image}
+                            alt={heroTrack.name}
+                            className='w-full h-full object-cover'
+                        />
+                        <div className='absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-black/90 via-black/50 to-transparent flex items-center justify-between'>
+                            <div className='truncate'>
+                                <p className='text-xs font-montserrat font-semibold text-white truncate'>{heroTrack.name}</p>
+                                <p className='text-[11px] text-neutral-400 truncate'>{heroTrack.desc || 'Featured track'}</p>
+                            </div>
+                            <button
+                                onClick={() => playWithId(getTrackId(heroTrack))}
+                                aria-label='Play spotlight track'
+                                className='w-8 h-8 rounded-full border border-card-edge bg-white/90 text-black flex items-center justify-center hover:bg-white transition cursor-pointer flex-shrink-0 ml-2'
+                            >
+                                <Play className='w-3.5 h-3.5 ml-0.5 fill-current' />
+                            </button>
                         </div>
-                        <span className='text-xs font-semibold text-purple-400 hover:text-purple-300 cursor-pointer'>
-                            View All ({filteredAlbums.length})
+                    </div>
+                </section>
+            )}
+
+            {/* Search Header */}
+            {searchTerm && (
+                <div className='flex items-center justify-between pb-3 border-b border-card-edge'>
+                    <div>
+                        <h2 className='text-2xl font-medium sm:text-[30px] text-white'>
+                            Search results
+                        </h2>
+                        <p className='text-sm text-neutral-400 mt-1'>
+                            Found {filteredSongs.length} tracks and {filteredAlbums.length} collections for <span className='highlight'>{searchTerm}</span>
+                        </p>
+                    </div>
+                </div>
+            )}
+
+            {/* Favorites Header */}
+            {activeCategory === 'favorites' && !searchTerm && (
+                <div className='flex items-center justify-between pb-3 border-b border-card-edge'>
+                    <div>
+                        <h2 className='text-2xl font-medium sm:text-[30px] text-white'>
+                            Your library
+                        </h2>
+                        <p className='text-sm text-neutral-400 mt-1'>
+                            {filteredSongs.length} tracks saved in your <span className='highlight'>personal collection</span>
+                        </p>
+                    </div>
+                </div>
+            )}
+
+            {/* Curated Albums Section */}
+            {activeCategory !== 'favorites' && filteredAlbums.length > 0 && (
+                <section>
+                    <div className='flex items-end justify-between mb-4'>
+                        <div>
+                            <h2 className='text-2xl font-medium sm:text-[30px] text-white'>
+                                Curated collections
+                            </h2>
+                            <p className='text-sm text-neutral-400 mt-1'>
+                                Explore original master series in <span className='highlight'>studio high definition</span>.
+                            </p>
+                        </div>
+                        <span className='hidden sm:inline-block text-xs font-mono text-neutral-400 border border-card-edge px-2.5 py-1 rounded-md'>
+                            {filteredAlbums.length} albums
                         </span>
                     </div>
 
-                    <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4'>
+                    <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3'>
                         {filteredAlbums.map((item, index) => {
                             const albumId = item._id !== undefined ? item._id : item.id;
                             return (
@@ -162,28 +174,31 @@ const DisplayHome = () => {
                             );
                         })}
                     </div>
-                </div>
+                </section>
             )}
 
-            {/* Featured Songs Section */}
-            <div>
-                <div className='flex items-center justify-between mb-4'>
+            {/* Audio Tracks Section */}
+            <section>
+                <div className='flex items-end justify-between mb-4'>
                     <div>
-                        <h3 className='text-xl sm:text-2xl font-extrabold text-white tracking-tight'>
+                        <h2 className='text-2xl font-medium sm:text-[30px] text-white'>
                             {activeCategory === 'favorites'
-                                ? 'Vault Audio Stream'
+                                ? 'Saved recordings'
                                 : activeCategory === 'trending'
-                                ? 'Trending Right Now'
-                                : 'Master Audio Streams'}
-                        </h3>
-                        <p className='text-xs text-slate-400 mt-0.5'>
-                            {filteredSongs.length} high-resolution tracks available
+                                ? 'Trending hits'
+                                : 'Master audio streams'}
+                        </h2>
+                        <p className='text-sm text-neutral-400 mt-1'>
+                            Stream lossless tracks with <span className='highlight'>spatial acoustic depth</span>.
                         </p>
                     </div>
+                    <span className='hidden sm:inline-block text-xs font-mono text-neutral-400 border border-card-edge px-2.5 py-1 rounded-md'>
+                        {filteredSongs.length} tracks
+                    </span>
                 </div>
 
                 {filteredSongs.length > 0 ? (
-                    <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4'>
+                    <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3'>
                         {filteredSongs.map((item, index) => {
                             const songId = getTrackId(item);
                             return (
@@ -199,17 +214,29 @@ const DisplayHome = () => {
                         })}
                     </div>
                 ) : (
-                    <div className='py-16 text-center aura-glass rounded-2xl border border-white/5'>
-                        <div className='w-12 h-12 rounded-full bg-white/5 mx-auto flex items-center justify-center text-slate-400 mb-3'>
-                            <svg className='w-6 h-6' fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </div>
-                        <p className='text-base font-semibold text-slate-300'>No tracks found</p>
-                        <p className='text-xs text-slate-500 mt-1'>Try refining your search or exploring other categories</p>
+                    <div className='py-16 text-center card-chai rounded-xl'>
+                        <Disc className='w-8 h-8 text-neutral-500 mx-auto mb-2' />
+                        <p className='text-sm font-medium text-neutral-300'>No recordings found</p>
+                        <p className='text-xs text-neutral-500 mt-1'>Try adjusting your search criteria or switching categories</p>
                     </div>
                 )}
-            </div>
+            </section>
+
+            {/* ChaiUI Footer Hairline */}
+            <footer className='relative mt-10 pt-6 text-xs text-neutral-500 font-montserrat flex flex-col sm:flex-row items-center justify-between gap-3 before:absolute before:top-0 before:left-1/2 before:h-px before:w-full before:-translate-x-1/2 before:bg-amber-600 before:opacity-10 dark:before:bg-orange-300 before:[mask-image:linear-gradient(90deg,transparent_0%,black_40%,black_60%,transparent_100%)]'>
+                <div className='flex items-center gap-2'>
+                    <span className='font-brand font-medium text-neutral-300'>NXT.Music</span>
+                    <span>•</span>
+                    <span>Studio Acoustic Design</span>
+                </div>
+                <div className='flex items-center gap-4 text-[11px] text-neutral-400'>
+                    <span>24-bit Lossless</span>
+                    <span>•</span>
+                    <span>Spatial Rendering</span>
+                    <span>•</span>
+                    <span>Dolby Master</span>
+                </div>
+            </footer>
         </div>
     );
 };

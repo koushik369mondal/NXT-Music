@@ -73,9 +73,10 @@ logs
 ehthumbs.db
 Thumbs.db
 
-# IDE files
+# IDE and tool files
 .vscode/
 .idea/
+.aider-desk/
 *.swp
 *.swo
 *~
